@@ -23,31 +23,34 @@
             android:gravity="center">
 
             <ImageView
+                android:layout_margin="50dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:contentDescription="@string/lbl_splash_logo"
-                android:src="@drawable/ic_chicken_logo" />
+                android:src="@drawable/ic_fresh_chickenwala_black" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center">
-                <ImageView
-                    android:tint="@color/colorBlack"
-                    android:paddingEnd="@dimen/dp_05"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:contentDescription="@string/lbl_splash_logo"
-                    android:src="@drawable/ic_dhote" />
-                <ImageView
-                    android:paddingStart="@dimen/dp_05"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:contentDescription="@string/lbl_splash_logo"
-                    android:src="@drawable/ic_chicken_text" />
+            <!--
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center">
+                            <ImageView
+                                android:tint="@color/colorBlack"
+                                android:paddingEnd="@dimen/dp_05"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:contentDescription="@string/lbl_splash_logo"
+                                android:src="@drawable/ic_dhote" />
+                            <ImageView
+                                android:paddingStart="@dimen/dp_05"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:contentDescription="@string/lbl_splash_logo"
+                                android:src="@drawable/ic_chicken_text" />
 
-            </LinearLayout>
+                        </LinearLayout>
+            -->
 
         </LinearLayout>
 
