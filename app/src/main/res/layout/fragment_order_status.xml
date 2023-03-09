@@ -1,0 +1,485 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data class="OrderStatusFragmentBinding">
+
+        <import type="android.view.View" />
+
+        <variable
+            name="data"
+            type="com.iitms.bfr.data.model.OrderData" />
+        <variable
+            name="userData"
+            type="com.iitms.bfr.data.model.User" />
+        <variable
+            name="orderCartAdapter"
+            type="com.iitms.bfr.ui.adapter.OrderCartAdapter" />
+        <variable
+            name="orderLifeCyclerAdapter"
+            type="com.iitms.bfr.ui.adapter.OrderLifeCycleAdapter" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorBackground"
+        tools:context=".ui.view.fragment.CartFragment">
+
+        <LinearLayout
+            app:layout_constraintBottom_toTopOf="@+id/ll_bottom"
+            android:id="@+id/ll_main"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.core.widget.NestedScrollView
+                android:layout_marginBottom="@dimen/dp_10"
+                android:clipToPadding="false"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="@dimen/dp_08"
+                    android:orientation="vertical">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/dp_03"
+                        app:cardCornerRadius="@dimen/dp_10">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="@dimen/dp_10">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <ImageView
+                                    android:id="@+id/iv_location"
+                                    android:layout_width="@dimen/dp_25"
+                                    android:layout_height="@dimen/dp_25"
+                                    android:layout_centerVertical="true"
+                                    android:src="@drawable/ic_bag" />
+
+                                <TextView
+                                    style="@style/CustomTextView"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:layout_toRightOf="@+id/iv_location"
+                                    android:paddingStart="@dimen/dp_10"
+                                    selectNewTime="@{data.deliveryTimeSlot == null ? `` : data.deliveryTimeSlot.deliveryDate}"
+                                    android:textColor="@color/colorPrimary"
+                                    android:textSize="@dimen/dp_16"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    style="@style/CustomTextView"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentEnd="true"
+                                    android:layout_centerVertical="true"
+                                    android:text="@{data.deliveryTimeSlot == null ? `` : data.deliveryTimeSlot.deliveryTimeSlot}"
+                                    android:textColor="@color/textColorSecondary"
+                                    android:textSize="@dimen/dp_14" />
+                            </RelativeLayout>
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="2dp"
+                                android:layout_marginTop="@dimen/dp_05"
+                                android:layout_marginBottom="@dimen/dp_05"
+                                android:background="@drawable/dash_bg" />
+
+                            <TextView
+                                style="@style/CustomTextView"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_toRightOf="@+id/iv_location"
+                                android:text="@{`Delivery to ` + data.deliveryAddress.addressType}"
+                                android:textColor="@color/textColorSecondary"
+                                android:textSize="@dimen/dp_15"
+                                android:textStyle="bold" />
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+                                <TextView
+                                    android:layout_alignParentLeft="true"
+                                    android:layout_toLeftOf="@+id/iv_map"
+                                    style="@style/CustomTextView"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:text="@{data.deliveryAddress.fullAddress}"
+                                    android:textColor="@color/textColorLight"
+                                    android:textSize="@dimen/dp_13" />
+
+                                <ImageView
+                                    android:id="@+id/iv_map"
+                                    android:layout_width="@dimen/dp_25"
+                                    android:layout_height="@dimen/dp_25"
+                                    android:layout_centerVertical="true"
+                                    android:layout_alignParentRight="true"
+                                    android:src="@drawable/ic_direction"
+                                    app:tint="@color/colorPrimary" />
+
+
+                            </RelativeLayout>
+
+
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        android:adapter="@{orderLifeCyclerAdapter}"
+                        android:nestedScrollingEnabled="false"
+                        android:layout_margin="@dimen/dp_05"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:visibility="gone"
+                        android:id="@+id/tv_lbl_delivery_detail"
+                        style="@style/CustomTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@+id/iv_location"
+                        android:text="Delivery Details"
+                        android:textColor="@color/textColorSecondary"
+                        android:textSize="@dimen/dp_15"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:id="@+id/ll_delivery_detail"
+                        android:visibility="gone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/button_background_unfill"
+                        android:backgroundTint="@null"
+                        android:orientation="vertical"
+                        android:padding="@dimen/dp_10">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:src="@drawable/ic_profile"
+                                app:tint="@color/colorPrimary" />
+
+                            <TextView
+                                style="@style/CustomTextView"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:paddingStart="@dimen/dp_10"
+                                android:text="@{userData.givenName}"
+                                android:textColor="@color/textColorSecondary"
+                                android:textSize="@dimen/sp_14" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal">
+
+                            <TextView
+                                style="@style/CustomTextView"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:paddingStart="@dimen/dp_10"
+                                android:text="Contact No : "
+                                android:textColor="@color/textColorSecondary"
+                                android:textSize="@dimen/sp_14" />
+
+                            <TextView
+                                style="@style/CustomTextView"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:paddingStart="@dimen/dp_10"
+                                android:text="@{userData.contactMedium != null ? userData.contactMedium.phoneNumber : `-`}"
+                                android:textColor="@color/colorPrimary"
+                                android:textSize="@dimen/sp_14" />
+
+                            <ImageView
+                                android:paddingStart="08dp"
+                                android:id="@+id/iv_call"
+                                android:layout_width="@dimen/dp_25"
+                                android:layout_height="@dimen/dp_25"
+                                android:layout_centerVertical="true"
+                                android:src="@drawable/ic_call"
+                                app:tint="@color/green" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+
+                    <TextView
+                        style="@style/CustomTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginTop="@dimen/dp_05"
+                        android:layout_toRightOf="@+id/iv_location"
+                        android:text="Order Details"
+                        android:textColor="@color/textColorSecondary"
+                        android:textSize="@dimen/dp_15"
+                        android:textStyle="bold" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        android:adapter="@{orderCartAdapter}"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+
+                </LinearLayout>
+
+            </androidx.core.widget.NestedScrollView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_bottom"
+            android:padding="@dimen/dp_10"
+            android:background="@color/colorWhite"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <Button
+                android:visibility="visible"
+                android:id="@+id/btn_delivered_order"
+                style="@style/CustomTextView"
+                android:text="@string/lbl_delivered_order"
+                android:backgroundTint="@null"
+                android:background="@drawable/button_background_fill"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+
+            <TextView
+                android:paddingStart="@dimen/dp_05"
+                style="@style/CustomTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_05"
+                android:text="Bill Details"
+                android:textColor="@color/textColorSecondary"
+                android:textSize="@dimen/dp_15"
+                android:textStyle="bold" />
+
+
+            <androidx.cardview.widget.CardView
+                android:layout_margin="@dimen/dp_03"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="@dimen/dp_10">
+
+                <RelativeLayout
+                    android:padding="@dimen/dp_10"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+
+                    <TextView
+                        style="@style/CustomTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/lbl_item_total"
+                        android:textColor="@color/textColorLight"
+                        android:textSize="@dimen/sp_12"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tv_item_total"
+                        style="@style/CustomTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:text="@{@string/rupee +` `+ data.finalAmount.orderAmount}"
+                        android:textColor="@color/textColorSecondary"
+                        android:textSize="@dimen/sp_13"
+                        android:textStyle="bold" />
+
+
+
+                    <TextView
+                        android:layout_below="@+id/tv_item_total"
+                        style="@style/CustomTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/lbl_package_charge"
+                        android:textColor="@color/textColorLight"
+                        android:textSize="@dimen/sp_12"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tv_package_charge"
+                        style="@style/CustomTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tv_item_total"
+                        android:layout_alignParentEnd="true"
+                        android:text="@{`+ ` + @string/rupee +` `+ data.finalAmount.extraAmount.packingCharges}"
+                        android:textColor="@color/textColorSecondary"
+                        android:textSize="@dimen/sp_13"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_below="@+id/tv_package_charge"
+                        style="@style/CustomTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/lbl_delivery_charge"
+                        android:textColor="@color/textColorLight"
+                        android:textSize="@dimen/sp_12"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tv_delivery_charge"
+                        style="@style/CustomTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tv_package_charge"
+                        android:layout_alignParentEnd="true"
+                        android:text="@{`+ ` + @string/rupee +` `+ data.finalAmount.extraAmount.deliveryCharges}"
+                        android:textColor="@color/textColorSecondary"
+                        android:textSize="@dimen/sp_13"
+                        android:textStyle="bold" />
+
+
+                    <TextView
+                        android:visibility="@{data.finalAmount.couponAmount == 0.0 ? View.GONE : View.VISIBLE}"
+                        android:id="@+id/lbl_coupon_price"
+                        android:layout_below="@+id/tv_delivery_charge"
+                        style="@style/CustomTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/lbl_coupon_price_off"
+                        android:textColor="@color/textColorLight"
+                        android:textSize="@dimen/sp_12"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:visibility="@{data.finalAmount.couponAmount == 0.0 ? View.GONE : View.VISIBLE}"
+                        android:id="@+id/tv_coupon_price"
+                        style="@style/CustomTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tv_delivery_charge"
+                        android:layout_alignParentEnd="true"
+                        android:text="@{`- ` + @string/rupee +` `+ data.finalAmount.couponAmount}"
+                        android:textColor="@color/textColorSecondary"
+                        android:textSize="@dimen/sp_13"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:visibility="@{data.finalAmount.couponAmount == 0.0 ? View.GONE : View.VISIBLE}"
+                        android:id="@+id/lbl_coupon_code"
+                        android:layout_below="@+id/tv_coupon_price"
+                        style="@style/CustomTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/lbl_coupon_code"
+                        android:textColor="@color/textColorLight"
+                        android:textSize="@dimen/sp_12"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:visibility="@{data.finalAmount.couponAmount == 0.0 ? View.GONE : View.VISIBLE}"
+                        android:id="@+id/tv_coupon_code"
+                        style="@style/CustomTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tv_coupon_price"
+                        android:layout_alignParentEnd="true"
+                        android:text="@{data.couponName}"
+                        android:textColor="@color/textColorSecondary"
+                        android:textSize="@dimen/sp_13"
+                        android:textStyle="bold" />
+
+
+
+                    <TextView
+                        android:layout_below="@+id/tv_coupon_code"
+                        style="@style/CustomTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/lbl_tax_charges"
+                        android:textColor="@color/textColorLight"
+                        android:textSize="@dimen/sp_12"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tv_tax_chages"
+                        style="@style/CustomTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tv_coupon_code"
+                        android:layout_alignParentEnd="true"
+                        android:text="0"
+                        android:textColor="@color/textColorSecondary"
+                        android:textSize="@dimen/sp_13"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        style="@style/CustomTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tv_tax_chages"
+                        android:layout_marginTop="@dimen/dp_10"
+                        android:text="@string/lbl_total_pay"
+                        android:textSize="@dimen/sp_14"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tv_total_pay"
+                        style="@style/CustomTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tv_tax_chages"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginTop="@dimen/dp_10"
+                        android:text="@{@string/rupee +` `+ data.finalAmount.finalOrderAmount}"
+                        android:textColor="@color/textColorSecondary"
+                        android:textSize="@dimen/sp_14"
+                        android:textStyle="bold" />
+
+                </RelativeLayout>
+
+
+
+            </androidx.cardview.widget.CardView>
+
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
