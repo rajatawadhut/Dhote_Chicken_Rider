@@ -7,11 +7,11 @@
 
         <variable
             name="loginModel"
-            type="com.iitms.bfr.data.model.LoginModel" />
+            type="com.dhote_chicken.rider.data.model.LoginModel" />
 
         <variable
             name="viewModel"
-            type="com.iitms.bfr.ui.viewModel.LoginActivityViewModel" />
+            type="com.dhote_chicken.rider.ui.viewModel.LoginActivityViewModel" />
 
     </data>
 

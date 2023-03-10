@@ -6,7 +6,7 @@
 
         <variable
             name="data"
-            type="com.iitms.bfr.data.model.OrderData" />
+            type="com.dhote_chicken.rider.data.model.OrderData" />
 
     </data>
 

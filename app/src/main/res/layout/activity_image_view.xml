@@ -15,7 +15,7 @@
         android:layout_height="match_parent"
         tools:context=".ui.view.activity.ImageViewActivity">
 
-        <com.iitms.bfr.ui.util.TouchImageView
+        <com.dhote_chicken.rider.ui.util.TouchImageView
             android:id="@+id/iv_homework_image"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -33,7 +33,7 @@
             android:layout_marginTop="7dp"
             android:layout_marginRight="10dp"
             android:src="@drawable/ic_close"
-            android:tint="@color/colorWhite" />
+            app:tint="@color/colorWhite" />
 
         <ProgressBar
             android:id="@+id/pb_homework"

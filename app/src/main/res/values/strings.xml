@@ -189,5 +189,5 @@
     <string name="look_like_you_have_not_added_anything_to_your_cart_go_ahead_and_explore_top_categories">Look like you have not added anything to your cart. Go ahead &amp; explore top categories.</string>
     <string name="title_order">Order Details</string>
     <string name="title_delivered_order">Delivered Order</string>
-    <string name="msg_delivered_order">Confirm order delivery.</string>
+    <string name="msg_delivered_order">Are you sure to deliver this order?</string>
 </resources>

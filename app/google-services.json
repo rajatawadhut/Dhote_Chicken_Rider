@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "127457205590",
-    "project_id": "bfr-app-e36da",
-    "storage_bucket": "bfr-app-e36da.appspot.com"
+    "project_number": "469634239750",
+    "project_id": "dhote-chicken-rider",
+    "storage_bucket": "dhote-chicken-rider.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:127457205590:android:823e1a994cf38a9f4d0af7",
+        "mobilesdk_app_id": "1:469634239750:android:d62c36faaf3b2a8cdae287",
         "android_client_info": {
-          "package_name": "com.iitms.bfr"
+          "package_name": "com.dhote_chicken.rider"
         }
       },
       "oauth_client": [
         {
-          "client_id": "127457205590-gf78jqdno4ji0gb540v2vjbsq1ivi08k.apps.googleusercontent.com",
+          "client_id": "469634239750-usnan1qhfeucrrv33kjgnov9hto69f8r.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDAUkvJ6RIWQyCHUKuRtRH7R9KYBDOe6iI"
+          "current_key": "AIzaSyDmYFnYC7KxrcxhNfsey2_jVKA7TsidjUA"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "127457205590-gf78jqdno4ji0gb540v2vjbsq1ivi08k.apps.googleusercontent.com",
+              "client_id": "469634239750-usnan1qhfeucrrv33kjgnov9hto69f8r.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

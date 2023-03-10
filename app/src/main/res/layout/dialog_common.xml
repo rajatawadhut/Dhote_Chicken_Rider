@@ -7,7 +7,7 @@
 
         <variable
             name="adapter"
-            type="com.iitms.bfr.ui.adapter.CommonSpinnerAdapter" />
+            type="com.dhote_chicken.rider.ui.adapter.CommonSpinnerAdapter" />
 
     </data>
 

@@ -9,16 +9,16 @@
 
         <variable
             name="data"
-            type="com.iitms.bfr.data.model.OrderData" />
+            type="com.dhote_chicken.rider.data.model.OrderData" />
         <variable
             name="userData"
-            type="com.iitms.bfr.data.model.User" />
+            type="com.dhote_chicken.rider.data.model.User" />
         <variable
             name="orderCartAdapter"
-            type="com.iitms.bfr.ui.adapter.OrderCartAdapter" />
+            type="com.dhote_chicken.rider.ui.adapter.OrderCartAdapter" />
         <variable
             name="orderLifeCyclerAdapter"
-            type="com.iitms.bfr.ui.adapter.OrderLifeCycleAdapter" />
+            type="com.dhote_chicken.rider.ui.adapter.OrderLifeCycleAdapter" />
 
     </data>
 
@@ -273,7 +273,7 @@
 
 
             <Button
-                android:visibility="visible"
+                android:visibility="gone"
                 android:id="@+id/btn_delivered_order"
                 style="@style/CustomTextView"
                 android:text="@string/lbl_delivered_order"

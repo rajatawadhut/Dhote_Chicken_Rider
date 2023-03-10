@@ -6,7 +6,7 @@
 
         <variable
             name="data"
-            type="com.iitms.bfr.data.model.CartItems" />
+            type="com.dhote_chicken.rider.data.model.CartItems" />
 
     </data>
     <androidx.cardview.widget.CardView

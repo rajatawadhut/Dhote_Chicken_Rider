@@ -6,7 +6,7 @@
 
         <variable
             name="data"
-            type="com.iitms.bfr.data.model.CategoryList" />
+            type="com.dhote_chicken.rider.data.model.CategoryList" />
 
     </data>
 

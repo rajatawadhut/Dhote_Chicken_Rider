@@ -7,7 +7,7 @@
 
         <variable
             name="toolbarModel"
-            type="com.iitms.bfr.data.model.ToolbarModel" />
+            type="com.dhote_chicken.rider.data.model.ToolbarModel" />
 
         <variable
             name="userName"

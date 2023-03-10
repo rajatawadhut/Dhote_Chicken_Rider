@@ -14,7 +14,7 @@ android {
     compileSdkVersion 32
 
     defaultConfig {
-        applicationId "com.iitms.bfr"
+        applicationId "com.dhote_chicken.rider"
         minSdkVersion 21
         targetSdkVersion 32
         versionCode 1

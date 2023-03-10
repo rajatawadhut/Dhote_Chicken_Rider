@@ -6,12 +6,12 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.iitms.bfr.ui.view.fragment.HomeFragment"
+        android:name="com.dhote_chicken.rider.ui.view.fragment.HomeFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/navigation_order_status"
-        android:name="com.iitms.bfr.ui.view.fragment.OrderStatusFragment"
+        android:name="com.dhote_chicken.rider.ui.view.fragment.OrderStatusFragment"
         android:label="@string/title_order"
         tools:layout="@layout/fragment_order_status" />
 
