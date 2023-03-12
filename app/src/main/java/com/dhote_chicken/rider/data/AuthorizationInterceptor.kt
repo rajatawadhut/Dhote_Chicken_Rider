@@ -1,6 +1,7 @@
 package com.dhote_chicken.rider.data
 
 import android.content.SharedPreferences
+import com.dhote_chicken.rider.ui.util.Constant.Companion.TOKEN
 
 import okhttp3.Interceptor
 import okhttp3.Protocol
@@ -9,10 +10,6 @@ import okhttp3.ResponseBody.Companion.toResponseBody
 import java.net.SocketTimeoutException
 import javax.inject.Inject
 import javax.inject.Singleton
-
-/**
- * Created by Amol Gahukar on 10/9/2020.
- */
 
 @Singleton
 class AuthorizationInterceptor @Inject constructor(
@@ -24,10 +21,10 @@ class AuthorizationInterceptor @Inject constructor(
         val request = chain.request()
         try {
 
-           /* val userType = sharedPreferences.getInt(USER_TYPE, 0)
-            val schoolId = sharedPreferences.getInt(KEY_SCHOOL_ID, 0)
-            val userId = if (userType == 3) sharedPreferences.getInt(KEY_STUD_UA_ID, 0)
-            else sharedPreferences.getInt(KEY_REG_ID, 0)*/
+            val token = sharedPreferences.getString(TOKEN, "")
+            /*          val schoolId = sharedPreferences.getInt(KEY_SCHOOL_ID, 0)
+                      val userId = if (userType == 3) sharedPreferences.getInt(KEY_STUD_UA_ID, 0)
+                      else sharedPreferences.getInt(KEY_REG_ID, 0)*/
 
             val requestBuilder = request.newBuilder()
             if (request.header("No-Authorization") == null) {
@@ -36,7 +33,7 @@ class AuthorizationInterceptor @Inject constructor(
                 requestBuilder.addHeader("collegeid",  sharedPreferences.getString(Constant.COLLEGEID, "").toString())
                 requestBuilder.addHeader("appUserId",  BuildConfig.APPLICATION_ID)*/
                 requestBuilder.addHeader("TenantId",  "Android")
-                requestBuilder.addHeader("Authorization",  "test")
+                requestBuilder.addHeader("Authorization",  token.toString())
             }
             response = chain.proceed(requestBuilder.build())
         } catch (excep: SocketTimeoutException) {

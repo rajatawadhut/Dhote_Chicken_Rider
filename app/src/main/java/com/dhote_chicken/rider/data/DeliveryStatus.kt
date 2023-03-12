@@ -7,7 +7,7 @@ enum class DeliveryStatus(val value : String) {
     InProcess("In Process"),
     AssignedToRider("Assigned to Rider"),
     OutForDelivery("Out for Delivery"),
-    Completed("Completed"),
+    Delivered("Delivered"),
     Closed("Closed"),
     Cancelled("Cancelled"),
 }

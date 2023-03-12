@@ -5,5 +5,5 @@ import com.google.gson.annotations.SerializedName
 class OrderStatus(
 
     @SerializedName("status")
-    var status: String = "Completed"
+    var status: String = "Delivered"
 ) : java.io.Serializable

@@ -91,7 +91,7 @@ class OrderStatusFragment @Inject constructor() :
 
 
                     for (cycle in it.order!!.orderLifeCycleStatus) {
-                        if (cycle.status == DeliveryStatus.Completed.value) {
+                        if (cycle.status == DeliveryStatus.Delivered.value) {
                             status = true
                             break
                         }
@@ -115,7 +115,7 @@ class OrderStatusFragment @Inject constructor() :
 
 
         viewModel.orderDelivered.observe(viewLifecycleOwner) {
-            if (it != null && it.status == DeliveryStatus.Completed.value) {
+            if (it != null && it.status == DeliveryStatus.Delivered.value) {
                 requireActivity().onBackPressed()
             }
         }
