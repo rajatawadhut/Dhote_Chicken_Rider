@@ -18,6 +18,7 @@ import com.dhote_chicken.rider.databinding.OrderStatusFragmentBinding
 import com.dhote_chicken.rider.ui.adapter.OrderCartAdapter
 import com.dhote_chicken.rider.ui.adapter.OrderLifeCycleAdapter
 import com.dhote_chicken.rider.ui.base.BaseFragment
+import com.dhote_chicken.rider.ui.util.Constant
 import com.dhote_chicken.rider.ui.viewModel.OrderStatusFragmentViewModel
 import java.util.*
 import javax.inject.Inject
@@ -113,6 +114,15 @@ class OrderStatusFragment @Inject constructor() :
             isLoading(it)
         }
 
+        viewModel.generateToken.observe(viewLifecycleOwner) {
+            sharedPrefData.saveData(Constant.TOKEN, it.accessToken.toString())
+            deliveredOrder()
+            if(it?.customerId != null && it.customerId!!.isNotEmpty() && !it.customerId.equals("Anonymous")) {
+                sharedPrefData.saveData(Constant.USERID, it.customerId.toString())
+            }
+        }
+
+
 
         viewModel.orderDelivered.observe(viewLifecycleOwner) {
             if (it != null && it.status == DeliveryStatus.Delivered.value) {
@@ -145,7 +155,7 @@ class OrderStatusFragment @Inject constructor() :
                     builder.setPositiveButton(
                         getString(R.string.action_yes)
                     ) { dialog: DialogInterface?, which: Int ->
-                        viewModel.deliveredOrder(orderData!!.id.toString(), OrderStatus())
+                        generateToken()
                     }
                     builder.setNegativeButton(
                         getString(R.string.action_no)
@@ -174,6 +184,17 @@ class OrderStatusFragment @Inject constructor() :
             }
         }
     }
+
+    private fun deliveredOrder() {
+        viewModel.deliveredOrder(orderData!!.id.toString(), OrderStatus())
+    }
+
+    private fun generateToken() {
+        if(user != null) {
+            viewModel.generateToken(user!!.contactMedium!!.phoneNumber.toString())
+        }
+    }
+
 
 
 }

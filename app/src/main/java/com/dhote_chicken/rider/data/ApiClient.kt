@@ -60,6 +60,10 @@ interface ApiClient {
         @Path(value = "userId")  userId : String,
     ): Response<UserData>
 
+    @POST("user/offline/{phone}")
+    suspend fun generateToken(
+        @Path(value = "phone")  phone_number : String,
+    ): Response<ValidateOTP>
 
 
     @GET("query/order/{orderId}")

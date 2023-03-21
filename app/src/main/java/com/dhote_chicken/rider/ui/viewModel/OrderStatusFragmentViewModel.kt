@@ -15,6 +15,7 @@ class OrderStatusFragmentViewModel @Inject constructor(val repository : OrderSta
     val orderDataById = MutableLiveData<OrderDataById>()
     val orderDelivered = MutableLiveData<OrderStatus>()
     val userData = MutableLiveData<UserData>()
+    val generateToken = MutableLiveData<ValidateOTP>()
 
 
     fun getUserInfo() : LiveData<UserInfo> {
@@ -62,6 +63,32 @@ class OrderStatusFragmentViewModel @Inject constructor(val repository : OrderSta
                 is Resource.Success -> {
                     isLoading.postValue(false)
                     orderDataById.postValue(responseData.value!!)
+                }
+                is Resource.Failure -> {
+                    isLoading.postValue(false)
+                    failed.postValue(responseData.status)
+                }
+                is Resource.AuthenticationFailed -> {
+                    isLoading.postValue(false)
+                    failed.postValue(responseData.status)
+                }
+            }
+        }
+
+    }
+
+    fun generateToken(number: String) {
+        viewModelScope.launch {
+            isLoading.postValue(true)
+            when (val responseData = repository.generateToken(
+                number
+            )) {
+                is Resource.Loading -> {
+                    val isLoading: Boolean = responseData.value
+                }
+                is Resource.Success -> {
+                    isLoading.postValue(false)
+                    generateToken.postValue(responseData.value!!)
                 }
                 is Resource.Failure -> {
                     isLoading.postValue(false)

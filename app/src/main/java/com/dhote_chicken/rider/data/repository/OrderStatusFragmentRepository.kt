@@ -21,6 +21,9 @@ class OrderStatusFragmentRepository @Inject constructor(
     }
 
 
+    suspend fun generateToken(number: String) = safeApiCall {
+        apiClient.generateToken(number)
+    }
     suspend fun getOrderById(orderId : String) = safeApiCall {
         apiClient.getOrderById(orderId)
     }
