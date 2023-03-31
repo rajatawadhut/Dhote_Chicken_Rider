@@ -146,6 +146,7 @@
 
 
                     <androidx.recyclerview.widget.RecyclerView
+                        android:visibility="gone"
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                         android:adapter="@{orderLifeCyclerAdapter}"
                         android:nestedScrollingEnabled="false"
